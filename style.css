@@ -1,62 +1,136 @@
+/* JavaFX CSS for Announcement System */
+
+/* Root/Scene styling */
 .root {
-    -fx-background-color: linear-gradient(to bottom right, #ffe0f0, #ffc0cb); /* pink gradient */
-    -fx-font-family: 'Segoe UI', sans-serif;
-    -fx-padding: 20;
+    -fx-background-color: #D90B6F;
+    -fx-font-family: "Arial";
 }
 
-.combo-box, .text-area, .button {
-    -fx-background-radius: 12;
-    -fx-border-radius: 12;
-    -fx-padding: 10;
-    -fx-font-size: 14px;
+/* AnchorPane styling */
+AnchorPane {
+    -fx-background-color: #40c4b5;
+    -fx-background-radius: 20px;
+    -fx-border-width: 8px;
+    -fx-border-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
 }
 
+/* Header Label styling */
+.header-label {
+    -fx-background-color: #7768e6;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+    -fx-padding: 10px;
+    -fx-background-radius: 12px 12px 0 0;
+    -fx-graphic-text-gap: 10;
+}
+
+/* ComboBox styling */
 .combo-box {
     -fx-background-color: beige;
-    -fx-border-color: #FFEDFA;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 16px;
+    -fx-prompt-text-fill: #2a6372;
 }
 
-.combo-box:focused, .text-area:focused {
-    -fx-border-color: #ff69b4;
-    -fx-effect: dropshadow(one-pass-box, #ffb6c1, 6, 0, 0, 0);
-}
-
-.text-area {
-    -fx-control-inner-background: #fff0f5; /* light pink */
-    -fx-border-color: #ffb6c1;
-    -fx-wrap-text: true;
-}
-
-.button {
-    -fx-background-color: #ff69b4;
-    -fx-text-fill: beige;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 5, 0.0, 2, 2);
-}
-
-.button:hover {
-    -fx-background-color: #ff85c1;
-}
-
-.card {
-    -fx-background-color: beige;
-    -fx-background-radius: 16;
-    -fx-padding: 15;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 2, 4);
-    -fx-border-color: #ffe4ec;
-    -fx-border-radius: 16;
-}
-
-.list-view {
+.combo-box .arrow-button {
     -fx-background-color: transparent;
 }
 
+.combo-box .arrow {
+    -fx-background-color: #2a6372;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #2a6372;
+    -fx-padding: 8px;
+}
+
+/* TextArea styling */
+.text-area {
+    -fx-background-color: #fffbe6;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-font-size: 16px;
+    -fx-text-fill: #555;
+}
+
+.text-area .content {
+    -fx-background-color: #fffbe6;
+    -fx-background-radius: 10px;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+/* Button styling */
+.button {
+    -fx-background-color: #ff9f1c;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #f08c00;
+}
+
+/* History Label styling */
+.history-label {
+    -fx-text-fill: #15423a;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-graphic-text-gap: 10;
+}
+
+/* ListView styling */
+.list-view {
+    -fx-background-color: beige;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: transparent;
+}
+
 .list-view .list-cell {
-    -fx-background-color: #ffe4ec;
+    -fx-background-color: transparent;
     -fx-text-fill: #444;
+    -fx-padding: 6px;
 }
 
 .list-view .list-cell:filled:selected {
-    -fx-background-color: #ffb6c1;
-    -fx-text-fill: white;
+    -fx-background-color: #e0e0e0;
+}
+
+/* ScrollBar styling */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #c0c0c0;
+    -fx-background-radius: 10px;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+/* Add emojis for labels */
+.megaphone-icon {
+    -fx-graphic: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M20 2v20l-10-5v-10l10-5z"/></svg>');
+}
+
+.history-icon {
+    -fx-graphic: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#15423a" d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
 }

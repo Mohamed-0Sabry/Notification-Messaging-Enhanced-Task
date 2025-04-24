@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: pink;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="55.0" layoutY="43.0" prefHeight="54.0" prefWidth="384.0" text="Label" textAlignment="CENTER" />
+      <Label layoutX="55.0" layoutY="37.0" prefHeight="54.0" prefWidth="384.0" text="Label" textAlignment="CENTER" />
       <ComboBox layoutX="52.0" layoutY="105.0" prefHeight="28.0" prefWidth="390.0" />
-      <TextArea layoutX="52.0" layoutY="155.0" prefHeight="219.0" prefWidth="390.0" style="-fx-background-color: blue;" />
-      <Button layoutX="55.0" layoutY="378.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="384.0" stylesheets="@style.css" text="Button" />
-      <Label layoutX="57.0" layoutY="422.0" prefHeight="30.0" prefWidth="175.0" style="-fx-background-color: pink;" text="Label" />
-      <ListView layoutX="54.0" layoutY="454.0" prefHeight="102.0" prefWidth="404.0" style="-fx-background-color: white;" stylesheets="@style.css" />
+      <TextArea layoutX="52.0" layoutY="147.0" prefHeight="219.0" prefWidth="390.0" />
+      <Button layoutX="55.0" layoutY="378.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="384.0" text="Button" />
+      <Label layoutX="57.0" layoutY="422.0" prefHeight="30.0" prefWidth="175.0" text="Label" />
+      <List View layoutX="54.0" layoutY="454.0" prefHeight="102.0" prefWidth="404.0" />
    </children>
 </AnchorPane>
