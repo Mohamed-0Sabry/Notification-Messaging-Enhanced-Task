@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,10 +17,32 @@ public class Main extends Application {
         stage.setTitle("JavaFX App");
         stage.setScene(new Scene(root));
         stage.show();
+
+
+
     }
     
 
     public static void main(String[] args) {
+
+
+
+        // example Usage of Notification class
+        /*
+        
+        Parser parser = new Parser();
+        
+        Notification notification = new Notification(
+            "admin",
+            "all",
+            "System maintenance at 10pm",
+            LocalDateTime.of(2025, 4, 23, 18, 30)
+         );
+
+            parser.writeNotificationToFile(notification, "notifications.txt");
+        */
+
+        
         launch(args);
     }
 }

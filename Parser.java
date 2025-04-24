@@ -1,6 +1,8 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -41,14 +43,13 @@ public class Parser {
     }
 
 
-    public void parseOutputFile(String filePath) throws FileNotFoundException {
-        File file = new File(filePath);
-        Scanner scanner = new Scanner(file);
-
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
+    public void writeNotificationToFile(Notification notification, String filePath) {
+        try (FileWriter writer = new FileWriter(filePath, true)) { // true = append mode
+            writer.write(notification.toString() + System.lineSeparator());
+            System.out.println("Notification added to file.");
+        } catch (IOException e) {
+            System.err.println("Failed to write notification: " + e.getMessage());
         }
-        scanner.close();
     }
     
 }
