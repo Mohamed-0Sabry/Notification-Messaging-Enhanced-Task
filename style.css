@@ -2,13 +2,13 @@
 
 /* Root/Scene styling */
 .root {
-    -fx-background-color: #0BF5AD;
+    -fx-background-color: #FFEDFA;
     -fx-font-family: "Arial";
 }
 
 /* AnchorPane styling */
 AnchorPane {
-    -fx-background-color: #0CEAF2;
+    -fx-background-color: #FFB8E0;
     -fx-background-radius: 20px;
     -fx-border-width: 8px;
     -fx-border-radius: 20px;
@@ -17,8 +17,8 @@ AnchorPane {
 
 /* Header Label styling */
 .header-label {
-    -fx-background-color: #0C58F2;
-    -fx-text-fill: white;
+    -fx-background-color: #EC7FA9;
+    -fx-text-fill: #EBF3F0;
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-alignment: center-left;
@@ -29,7 +29,7 @@ AnchorPane {
 
 /* ComboBox styling */
 .combo-box {
-    -fx-background-color: #fffbe6;
+    -fx-background-color: #EBF3F0;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-font-size: 16px;
@@ -51,7 +51,7 @@ AnchorPane {
 
 /* TextArea styling */
 .text-area {
-    -fx-background-color: #fffbe6;
+    -fx-background-color: #EBF3F0;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-border-color: transparent;
@@ -60,7 +60,7 @@ AnchorPane {
 }
 
 .text-area .content {
-    -fx-background-color: #fffbe6;
+    -fx-background-color: #EBF3F0;
     -fx-background-radius: 10px;
 }
 
@@ -74,8 +74,8 @@ AnchorPane {
 
 /* Button styling */
 .button {
-    -fx-background-color: #ff9f1c;
-    -fx-text-fill: white;
+    -fx-background-color: #BE5985;
+    -fx-text-fill: #EBF3F0;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
     -fx-background-radius: 10px;
@@ -96,7 +96,7 @@ AnchorPane {
 
 /* ListView styling */
 .list-view {
-    -fx-background-color: beige;
+    -fx-background-color: #EBF3F0;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-border-color: transparent;
@@ -109,7 +109,7 @@ AnchorPane {
 }
 
 .list-view .list-cell:filled:selected {
-    -fx-background-color: #e0e0e0;
+    -fx-background-color: #EBF3F0;
 }
 
 /* ScrollBar styling */
@@ -118,7 +118,7 @@ AnchorPane {
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #c0c0c0;
+    -fx-background-color: #EBF3F0;
     -fx-background-radius: 10px;
 }
 
@@ -126,11 +126,3 @@ AnchorPane {
     -fx-background-color: transparent;
 }
 
-/* Add emojis for labels */
-.megaphone-icon {
-    -fx-graphic: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="file:///C:/Users/a_sal/Downloads/megaphone.svg" width="24" height="24" viewBox="0 0 24 24"><path fill="white" d="M20 2v20l-10-5v-10l10-5z"/></svg>');
-}
-
-.history-icon {
-    -fx-graphic: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="file:///C:/Users/a_sal/Downloads/history-svgrepo-com.svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#15423a" d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
-}
