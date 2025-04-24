@@ -1,0 +1,47 @@
+
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #ffe0f0, #ffc0cb); /* pink gradient */
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.combo-box, .text-area, .button {
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #ff99cc;
+}
+
+.text-area {
+    -fx-control-inner-background: #fff0f5; /* light pink */
+    -fx-border-color: #ffb6c1;
+    -fx-wrap-text: true;
+}
+
+.button {
+    -fx-background-color: #ff69b4;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 5, 0.0, 2, 2);
+}
+
+.button:hover {
+    -fx-background-color: #ff85c1;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 2, 4);
+    -fx-border-color: #ffe4ec;
+    -fx-border-radius: 16;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
