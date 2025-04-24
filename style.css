@@ -1,7 +1,7 @@
-
 .root {
     -fx-background-color: linear-gradient(to bottom right, #ffe0f0, #ffc0cb); /* pink gradient */
     -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-padding: 20;
 }
 
 .combo-box, .text-area, .button {
@@ -12,8 +12,13 @@
 }
 
 .combo-box {
-    -fx-background-color: white;
-    -fx-border-color: #ff99cc;
+    -fx-background-color: beige;
+    -fx-border-color: #FFEDFA;
+}
+
+.combo-box:focused, .text-area:focused {
+    -fx-border-color: #ff69b4;
+    -fx-effect: dropshadow(one-pass-box, #ffb6c1, 6, 0, 0, 0);
 }
 
 .text-area {
@@ -24,7 +29,7 @@
 
 .button {
     -fx-background-color: #ff69b4;
-    -fx-text-fill: white;
+    -fx-text-fill: beige;
     -fx-cursor: hand;
     -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 5, 0.0, 2, 2);
 }
@@ -34,7 +39,7 @@
 }
 
 .card {
-    -fx-background-color: white;
+    -fx-background-color: beige;
     -fx-background-radius: 16;
     -fx-padding: 15;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 2, 4);
@@ -44,4 +49,14 @@
 
 .list-view {
     -fx-background-color: transparent;
+}
+
+.list-view .list-cell {
+    -fx-background-color: #ffe4ec;
+    -fx-text-fill: #444;
+}
+
+.list-view .list-cell:filled:selected {
+    -fx-background-color: #ffb6c1;
+    -fx-text-fill: white;
 }
