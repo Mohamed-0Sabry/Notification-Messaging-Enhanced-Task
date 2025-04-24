@@ -33,12 +33,12 @@
             <ListView layoutX="33.0" layoutY="409.0" prefHeight="107.0" prefWidth="366.0" />
             <ImageView fitHeight="60.0" fitWidth="71.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Downloads/attention-announcement-megaphone-marketing.256x211.png" />
+                  <Image url="@/attention-announcement-megaphone-marketing.256x211.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="36.0" fitWidth="57.0" layoutX="21.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@sabry/Notification-Messaging-Enhanced-Task/png-transparent-paper-icon-pink-line-material-property-peach.png" />
+                  <Image url="@/png-transparent-paper-icon-pink-line-material-property-peach.png" />
                </image>
             </ImageView>
          </children>
