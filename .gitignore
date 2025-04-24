@@ -26,3 +26,4 @@ replay_pid*
 .fake
 bin/
 .vscode/
+run.bat
