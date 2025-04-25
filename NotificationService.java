@@ -40,11 +40,7 @@ public class NotificationService {
             if (!notifications.isEmpty()) {
                 Notification notification = notifications.get(0);
                 if (!notification.getId().isEmpty()) {
-                    return String.format("Student: %s\nID: %s\nMajor: %s\nYear: %d",
-                        notification.getName(),
-                        notification.getId(),
-                        notification.getMajor(),
-                        notification.getYear());
+                    return notification.getName();
                 } else {
                     return notification.getMessage();
                 }

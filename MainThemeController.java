@@ -76,18 +76,11 @@ public class MainThemeController implements Initializable {
     
         if (selectedFile != null) {
             try {
-                List<Notification> notifications = parser.readNotificationsFromFile(selectedFile.getAbsolutePath());
-    
-                if (!notifications.isEmpty()) {
-                    Notification notification = notifications.get(0);
-                    if (!notification.getId().isEmpty()) {
-                        this.StudentName = notification.getName();
-                        this.isFileuploaded = true; 
-                        targetRoleComboBox.setValue("Student");
-                    } else {
-                        messageTextArea.setText(notification.getMessage());
-                        targetRoleComboBox.setValue(notification.getReceiver());
-                    }
+                String studentName = notificationService.readMessageFromFile(selectedFile);
+                if (!studentName.isEmpty()) {
+                    this.StudentName = studentName;
+                    this.isFileuploaded = true; 
+                    targetRoleComboBox.setValue("Student");
                 } else {
                     showAlert("No valid notifications found in file.");
                 }
