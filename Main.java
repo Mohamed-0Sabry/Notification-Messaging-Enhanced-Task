@@ -19,8 +19,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-
-
         // example Usage of Notification class
         /*
         
@@ -35,8 +33,6 @@ public class Main extends Application {
 
             parser.writeNotificationToFile(notification, "notifications.txt");
         */
-
-        
         launch(args);
     }
 }

@@ -15,7 +15,6 @@ class FileNotificationReader {
             }
         }
     }
-
     private void parseNotificationLine(String line) {
         StringTokenizer tokenizer = new StringTokenizer(line, "|");
         if (tokenizer.countTokens() >= 4) {
