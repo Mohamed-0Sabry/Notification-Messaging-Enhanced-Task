@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -31,22 +32,43 @@ class FileNotificationReader {
 
     private Notification parseNotificationLine(String line) {
         StringTokenizer tokenizer = new StringTokenizer(line, "|");
-        if (tokenizer.countTokens() >= 4) {
+        int tokenCount = tokenizer.countTokens();
+
+        if (tokenCount == 4) {
+            // Regular notification format
             try {
                 String sender = tokenizer.nextToken();
                 String receiver = tokenizer.nextToken();
                 String message = tokenizer.nextToken();
-                String dateTimestr = tokenizer.nextToken();
-                LocalDateTime dateTime = LocalDateTime.parse(dateTimestr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                String dateTimeStr = tokenizer.nextToken();
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, 
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                 return new Notification(sender, receiver, message, dateTime);
             } catch (Exception e) {
-                System.err.println("Invalid date time format: " + e.getMessage());
+                System.err.println("Invalid notification format: " + e.getMessage());
+                return null;
+            }
+        } else if (tokenCount == 7) {
+            // Student data format
+            try {
+                String id = tokenizer.nextToken();
+                String name = tokenizer.nextToken();
+                String gender = tokenizer.nextToken();
+                String dobStr = tokenizer.nextToken();
+                String email = tokenizer.nextToken();
+                String major = tokenizer.nextToken();
+                int year = Integer.parseInt(tokenizer.nextToken());
+                LocalDate dob = LocalDate.parse(dobStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                return new Notification(id, name, gender, dob, email, major, year);
+            } catch (Exception e) {
+                System.err.println("Invalid student data format: " + e.getMessage());
                 return null;
             }
         }
         return null;
     }
 }
+
 
 class FileNotificationWriter {
     public void writeNotification(Notification notification, String filePath) {
