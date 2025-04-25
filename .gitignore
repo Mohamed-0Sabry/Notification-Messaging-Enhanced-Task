@@ -27,3 +27,5 @@ replay_pid*
 bin/
 .vscode/
 run.bat
+.idea/
+out/
