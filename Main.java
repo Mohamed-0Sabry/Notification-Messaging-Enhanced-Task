@@ -18,21 +18,6 @@ public class Main extends Application {
     
 
     public static void main(String[] args) {
-
-        // example Usage of Notification class
-        /*
-        
-        Parser parser = new Parser();
-        
-        Notification notification = new Notification(
-            "admin",
-            "all",
-            "System maintenance at 10pm",
-            LocalDateTime.of(2025, 4, 23, 18, 30)
-         );
-
-            parser.writeNotificationToFile(notification, "notifications.txt");
-        */
         launch(args);
     }
 }

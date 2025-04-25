@@ -2,12 +2,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -16,83 +14,77 @@ public class MainThemeController implements Initializable {
     @FXML private ComboBox<String> targetRoleComboBox;
     @FXML private TextArea messageTextArea;
     @FXML private Button sendButton;
-    @FXML private Button uploadButton; // mesh fahma
+    @FXML private Button uploadButton;
     @FXML private ListView<String> historyListView;
 
-    private static final String NOTIFICATIONS_FILE = "notifications.txt";
+    private NotificationService notificationService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        targetRoleComboBox.getItems().addAll("Student", "Instructor", "All");
-        loadNotifications();
-        sendButton.setOnAction(event -> sendAnnouncement());
-       // uploadButton.setOnAction(event -> uploadMessageFromFile());
+        initializeUI();
+        initializeService();
+        initializeListeners();
+        refreshNotificationHistory();
     }
 
-    private void sendAnnouncement() {
-        String selectedRole = targetRoleComboBox.getValue();
+    private void initializeUI() {
+        targetRoleComboBox.getItems().addAll("Student", "Instructor", "All");
+    }
+
+    private void initializeService() {
+        Parser parser = new Parser();
+        notificationService = new NotificationService(parser, "notifications.txt");
+    }
+
+    private void initializeListeners() {
+        sendButton.setOnAction(event -> handleSendNotification());
+        uploadButton.setOnAction(event -> handleUploadMessage());
+    }
+
+    private void handleSendNotification() {
+        String role = targetRoleComboBox.getValue();
         String message = messageTextArea.getText().trim();
 
-        if (selectedRole == null || selectedRole.isEmpty()) {
-            showAlert("Please select a target role");
-            return;
-        }
-        if (message.isEmpty()) {
-            showAlert("Please enter a message");
-            return;
-        }
+        if (!isValidInput(role, message)) return;
 
-        // Create and save the notification
-        Notification notification = new Notification(
-                "admin",
-                selectedRole,
-                message,
-                LocalDateTime.now()
-        );
-
-        Parser parser = new Parser();
-        parser.writeNotificationToFile(notification, NOTIFICATIONS_FILE);
+        notificationService.sendNotification("admin", role, message);
         messageTextArea.clear();
-        loadNotifications();
+        refreshNotificationHistory();
     }
-/* mesh fahma hahaha
-    private void uploadMessageFromFile() {
+
+    private void handleUploadMessage() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Message File");
         fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+            new FileChooser.ExtensionFilter("Text Files", "*.txt")
+        );
 
         File selectedFile = fileChooser.showOpenDialog(uploadButton.getScene().getWindow());
         if (selectedFile != null) {
             try {
-                String content = Files.readString(selectedFile.toPath());
+                String content = notificationService.readMessageFromFile(selectedFile);
                 messageTextArea.setText(content);
             } catch (IOException e) {
                 showAlert("Failed to read file: " + e.getMessage());
             }
         }
-    } */
+    }
 
-    private void loadNotifications() {
-        File file = new File(NOTIFICATIONS_FILE);
-        if (!file.exists()) return;
+    private void refreshNotificationHistory() {
+        List<String> notifications = notificationService.loadNotifications();
+        historyListView.getItems().setAll(notifications);
+    }
 
-        try {
-            List<String> lines = Files.readAllLines(file.toPath());
-            List<String> formattedNotifications = new ArrayList<>();
-
-            for (String line : lines) {
-                String[] parts = line.split("\\|"); //uses "|" delimiter
-                if (parts.length >= 4) {
-                    String formatted = String.format("[%s] To %s: %s",
-                            parts[3], parts[1], parts[2]);
-                    formattedNotifications.add(formatted);
-                }
-            }
-            historyListView.getItems().setAll(formattedNotifications);
-        } catch (IOException e) {
-            showAlert("Failed to load notifications: " + e.getMessage());
+    private boolean isValidInput(String role, String message) {
+        if (role == null || role.isEmpty()) {
+            showAlert("Please select a target role");
+            return false;
         }
+        if (message.isEmpty()) {
+            showAlert("Please enter a message");
+            return false;
+        }
+        return true;
     }
 
     private void showAlert(String message) {
@@ -101,11 +93,8 @@ public class MainThemeController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
 
-        // Get the dialog pane and apply styles
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(
-                getClass().getResource("style.css").toExternalForm()
-        );
+        dialogPane.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         dialogPane.getStyleClass().add("custom-alert");
 
         alert.showAndWait();

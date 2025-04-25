@@ -2,34 +2,49 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 class FileNotificationReader {
-    public void readNotifications(String filePath) throws FileNotFoundException {
+
+    public List<Notification> readNotifications(String filePath) {
+        List<Notification> notifications = new ArrayList<>();
         File file = new File(filePath);
+        if (!file.exists())
+            return notifications;
+
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                parseNotificationLine(line);
+                Notification notification = parseNotificationLine(line);
+                if (notification != null) {
+                    notifications.add(notification);
+                }
             }
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found: " + filePath);
         }
+
+        return notifications;
     }
-    private void parseNotificationLine(String line) {
+
+    private Notification parseNotificationLine(String line) {
         StringTokenizer tokenizer = new StringTokenizer(line, "|");
         if (tokenizer.countTokens() >= 4) {
-            String sender = tokenizer.nextToken();
-            String receiver = tokenizer.nextToken();
-            String message = tokenizer.nextToken();
-            String dateTime = tokenizer.nextToken();
-            
-            System.out.println("----------");
-            System.out.println("Sender: " + sender);
-            System.out.println("Receiver: " + receiver);
-            System.out.println("Message: " + message);
-            System.out.println("DateTime: " + dateTime);
-            System.out.println("----------");
+            try {
+                String sender = tokenizer.nextToken();
+                String receiver = tokenizer.nextToken();
+                String message = tokenizer.nextToken();
+                String dateTimestr = tokenizer.nextToken();
+                LocalDateTime dateTime = LocalDateTime.parse(dateTimestr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                return new Notification(sender, receiver, message, dateTime);
+            } catch (Exception e) {
+                System.err.println("Invalid date time format: " + e.getMessage());
+                return null;
+            }
         }
+        return null;
     }
 }
 
@@ -54,10 +69,22 @@ public class Parser {
     }
 
     public void parseInputFile(String filePath) throws FileNotFoundException {
-        reader.readNotifications(filePath);
+        reader.readNotifications(filePath).forEach(notification -> {
+            System.out.println("----------");
+            System.out.println("Sender: " + notification.getSender());
+            System.out.println("Receiver: " + notification.getReceiver());
+            System.out.println("Message: " + notification.getMessage());
+            System.out.println("DateTime: " + notification.getDateTime());
+            System.out.println("----------");
+        });
+    }
+    
+    public List<Notification> readNotificationsFromFile(String filePath) {
+        return reader.readNotifications(filePath);
     }
 
     public void writeNotificationToFile(Notification notification, String filePath) {
         writer.writeNotification(notification, filePath);
     }
+
 }
