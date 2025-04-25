@@ -1,9 +1,7 @@
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.nio.file.Files;
 
 public class NotificationService {
     private final Parser parser;
@@ -24,21 +22,13 @@ public class NotificationService {
         List<String> formatted = new ArrayList<>();
 
         for (Notification notification : notifications) {
-            if (!notification.getId().isEmpty()) {
-                // Format student data
-                formatted.add(String.format("Student: %s (%s) - %s Year %d", 
-                    notification.getName(),
-                    notification.getMajor(),
-                    notification.getEmail(),
-                    notification.getYear()));
-            } else {
-                // Format regular notification
-                formatted.add(String.format("[%s] %s -> %s: %s", 
-                    notification.getDateTime().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                    notification.getSender(),
-                    notification.getReceiver(),
-                    notification.getMessage()));
-            }
+            formatted.add(String.format(
+                "[%s] | From: %s | To: %s | Message: %s", 
+                notification.getDateTime().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                notification.getSender(),
+                notification.getReceiver(),
+                notification.getMessage()
+            ));
         }
 
         return formatted;
@@ -50,14 +40,12 @@ public class NotificationService {
             if (!notifications.isEmpty()) {
                 Notification notification = notifications.get(0);
                 if (!notification.getId().isEmpty()) {
-                    // Return student information
                     return String.format("Student: %s\nID: %s\nMajor: %s\nYear: %d",
                         notification.getName(),
                         notification.getId(),
                         notification.getMajor(),
                         notification.getYear());
                 } else {
-                    // Return notification message
                     return notification.getMessage();
                 }
             }

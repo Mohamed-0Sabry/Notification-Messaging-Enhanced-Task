@@ -13,10 +13,7 @@ public class Main extends Application {
         stage.setScene(new Scene(root));
         stage.show();
         stage.getScene().getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-
     }
-    
-
     public static void main(String[] args) {
         launch(args);
     }
